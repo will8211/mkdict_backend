@@ -1,0 +1,94 @@
+{% extends "master.html" %}
+
+{% block title %}Search{% endblock %}
+
+{% block body %}
+
+<script>
+function switchDict(x,y){} //Placeholder
+</script>
+
+<h2 id="search_title">Taiwanese-English Dictionary</h2>
+
+<div class="search_container">
+    {% block search %}
+        {{ super() }}
+    {% endblock %}
+
+<br><br>
+<div class="small">
+Search by English, Mandarin characters, or Taiwanese romanization.
+<br><br>
+To search by Taiwanese, select the romanization system you want to use. You
+can include tone numbers or diacritics, or search without them. If you are
+using tone numbers, make sure to include the numbers for unmarked tones, such as
+first and fourth tone in POJ and TRS.
+<br><br>
+For POJ (and DT), if the 'ⁿ' or 'o·' give you any problems, just use
+'nn' or 'oo'.
+<br><br>
+To learn about the different romanizations systems, have a look at the 
+following Wikipedia pages:
+<br>
+<a href="https://en.wikipedia.org/wiki/Pe%CC%8Dh-%C5%8De-j%C4%AB">Pe̍h-ōe-jī (POJ)</a>
+<br>
+<a href="https://en.wikipedia.org/wiki/Taiwanese_Romanization_System">Taiwanese Romanization System (TRS)</a>
+<br>
+<a href="https://en.wikipedia.org/wiki/Daighi_tongiong_pingim">Daighi tongiong pingim (DT)</a>
+<br><br>
+<strong>Wildcard search:</strong>
+<br>
+Use a question mark (?) to stand for any one character, or an asterisk (*) to 
+stand for any number of characters. Searches enclosed in double quotes (") will 
+return only exact matches. 
+<br><br>
+<strong>Note about the DT romanization:</strong>
+<br>
+Since DT represents tones as they are pronounced after tone sandhi, it is 
+difficult to convert from POJ to DT. For this reason, about 15% of the 
+dictionary entries, and over half of the example phrases are not included in
+DT searches.
+<br><br>
+<strong>About the Maryknoll dictionary:</strong>
+<br>
+This dictionary exists because of the amazing work of the 
+<a href="http://www.taiwanesedictionary.org/">Maryknoll Language Service Center</a>
+. They have generously released their Taiwanese-English Dictionary to the 
+public under a Creative Commons licence, allowing sites like this one to exist. 
+You can support them by visiting their 
+<a href="http://www.catholic.org.tw/en/Congregations/Men%20Women/Taichung%20diocese/congreMenTch004.html">center</a> 
+in Taichung, Taiwan, and purchasing their Taiwanese textbooks, CDs, or by 
+signing up for language courses with them.
+<br><br>
+(This website, however, is in no way affiliated with the Maryknoll Language 
+Service Center. Any opinions expressed on this website are solely my own and do 
+not express the views or opinions of the Maryknoll Language Service Center, 
+etc., etc.)
+<br><br>
+<strong>About the MOE dictionary:</strong>
+<br>
+Taiwan's Ministry of Education provides an exellent Taiwanese-Chinese Dictionary.
+You can check out the <a href="http://twblg.dict.edu.tw/holodict_new/index.html">
+original</a> version and the <a href="http://moedict.tw/">new</a> version. 
+Big shout out to Reddit's u/Guohuade for providing raw data and 
+cross-referencing it with <a href="http://cc-cedict.org/wiki/">CC-CEDICT</a> 
+for the English entries. Check out his subreddit, 
+<a href="https://www.reddit.com/r/ohtaigi/">r/ohtaigi</a> as well as his YouTube 
+channel <a href="https://www.youtube.com/channel/UC8Bj1AnLs3na054bM37BTNg">
+Anyong Teaches Taiwanese</a> for great lessons in Taiwanese for English speakers.
+<br><br>
+<strong>Suggestions and corrections:</strong>
+<br>
+Maryknoll's original print dictionary was very well proofread and edited. However, 
+the xls file on which this website is based was scanned and converted to text
+using optical character recognition and therefore contains many errors. If
+you find mistakes, you can submit corrections to me at this 
+<a href="mailto:wmannard@lycos.com">address</a>. Please include the
+the words "MkDict correction" in the subject line. Also, please copy and paste 
+the "plaintext" entry somewhere in the message so I can know exactly which 
+entry you are referring to. If you want, you can cross refence with the print 
+dictionary <a href="http://www.taiwanesedictionary.org/">here</a>.
+</div>
+</div>
+{% endblock %}
+

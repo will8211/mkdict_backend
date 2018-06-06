@@ -1,0 +1,359 @@
+/* 
+ *  Webfonts - Thanks Font Squirrel! (http://www.fontsquirrel.com)
+ */
+
+@font-face {
+    font-family: 'noto_sans';
+    src: url('../fonts/notosans-bold-modu21b3-webfont.eot');
+    src: url('../fonts/notosans-bold-modu21b3-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/notosans-bold-modu21b3-webfont.woff2') format('woff2'),
+         url('../fonts/notosans-bold-modu21b3-webfont.woff') format('woff'),
+         url('../fonts/notosans-bold-modu21b3-webfont.ttf') format('truetype'),
+         url('../fonts/notosans-bold-modu21b3-webfont.svg#noto_sansbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'noto_sans';
+    src: url('../fonts/notosans-regular-modu21b3-webfont.eot');
+    src: url('../fonts/notosans-regular-modu21b3-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/notosans-regular-modu21b3-webfont.woff2') format('woff2'),
+         url('../fonts/notosans-regular-modu21b3-webfont.woff') format('woff'),
+         url('../fonts/notosans-regular-modu21b3-webfont.ttf') format('truetype'),
+         url('../fonts/notosans-regular-modu21b3-webfont.svg#noto_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*
+ *  Master
+ */
+
+body {
+    background-color: white;
+    background-image: url("../images/bg.jpg");
+    font-size: 120%;
+    font-family: 'noto_sans';
+}
+.mobile {
+    display: hide;
+}
+
+/*
+ *  Results table
+ */
+
+#result_title {
+    margin-left: 10px;
+}
+table, tr {
+    border: 1px solid #999999;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+td, th {
+    padding: 3px 10px;
+}
+th {
+    color: white;
+    background-color: #207710;
+    text-align: left;
+}
+.taiwanese {
+    color: #207710;
+    font-weight: bold;
+    text-decoration: none;
+}
+.hidden div {
+    background-color: #F5F5F5;
+}
+/*.small {
+    font-size: 70%; 
+}*/
+.plain {
+    font-family: monospace;
+    font-size: 130%;
+}
+.flipped {
+    transform: scale(1, -1);
+    -moz-transform: scale(1, -1);
+    -webkit-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    -khtml-transform: scale(1, -1);
+    -ms-transform: scale(1, -1);
+}
+.sound_button {
+    float: right;
+    width: 25%;
+}
+.info {
+    width: 25%;
+    float: left;
+}
+.grey {
+    background-color: #F5F5F5;
+}
+.None {
+    display: none;
+}
+.audio_container {
+    display: inline;
+    position: relative;
+}
+
+/*
+ *  Search form
+ */
+
+#search_title {
+    text-align: center;
+}
+.search_container {
+    width:440px;
+    margin:0 auto;
+    padding: 3px;
+}
+.search_container_left {
+    width:440px;
+    padding: 3px;
+}
+.search_box { 
+    padding:6px 24px 6px 36px;
+    width: 308px;
+    background: url('../images/search.svg') no-repeat 2px 5px; 
+    background-color: white;
+    border: 1px solid #207710;
+    float: left;
+    margin-left: 10px;
+    font-size: 120%;
+}
+#search_button {
+    color: white;
+    background-color: #207710;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 120%;
+    font-family: 'noto_sans';
+    border: 1px solid #207710;
+    margin-left: 5px; 
+    /*border-radius: 3px;*/
+    display: inline-block;
+    position: relative;
+    top: -30px;
+}
+#clear {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: url('../images/clear.svg');
+    background-repeat: no-repeat;
+    position: relative;
+    left: -30px;
+    top: 10px;
+}
+.dropdown { 
+    background-color: white;
+    padding:3px 6px 3px 6px;
+    width: 195px;
+    border: 1px solid #207710;
+    float: right;
+    margin-right: 10px;
+    font-size: 80%;
+}
+.droptitle {
+    float: left;
+    padding-left: 10px;
+    font-weight: bold;
+}
+.audio_label {
+    vertical-align: top;
+}
+.small {
+    font-size: 75%;
+    background: #ededed;
+    padding: 7px;
+}
+#mk {
+    font-weight: bold;
+    color: #207710;
+}
+#moe {
+    font-weight: bold;
+    color: #E37B15;
+}
+
+/*
+ *  Dictionary selection tabs
+ */
+
+#tab_left {
+    display: inline-block; 
+    height: 0; 
+    width: 0; 
+    border-right: 28px solid #207710; 
+    border-top: 28px solid transparent; 
+    margin-bottom: -8px
+}
+#maryknoll_tab {
+    display: inline-block; 
+    height: 28px; 
+    background-color: #207710; 
+    color: white
+}
+#overlap_left {
+    display: inline-block; 
+    height: 0; 
+    width: 0; 
+    border-left: 14px solid #207710; 
+    border-top: 14px solid transparent; 
+    border-bottom: 14px solid #207710; 
+    margin-bottom: -8px
+}
+#overlap_right {
+    display: inline-block; 
+    height: 0; 
+    width: 0; 
+    border-right: 14px solid #E37B15; 
+    border-top: 14px solid transparent; 
+    border-bottom: 14px solid #207710; 
+    margin-bottom: -8px
+}
+#moe_tab {
+    display: inline-block; 
+    height: 28px; 
+    background-color: #E37B15; 
+    color: white;
+    cursor: pointer;
+}
+#tab_right {
+    display: inline-block; 
+    height: 0; 
+    width: 0; 
+    border-left: 28px solid #E37B15; 
+    border-top: 28px solid transparent; 
+    margin-bottom: -8px
+}
+
+/*
+ *  Taiwanese Charcters with Zhuyin
+ */
+
+.taichar {
+    font-size: 3em;
+    font-family: 'SimSun';
+}
+.zhuyin {
+    display: inline-block; 
+    width: 1em;
+}
+.len1 {
+    vertical-align: 0.8em;
+}
+.len2 {
+    line-height: 1.6em;
+}
+.len3 {
+    line-height: 0.9em;
+}
+.tone {
+    display: inline-block;
+    width: 1em; font-size: 1.5em;
+    margin-right: -0.5em
+}
+.˫, .˪, .ㆴ, .ㆵ, .ㆶ, .ㆷ, .ㆴ͘, .ㆵ͘, .ㆶ͘, .ㆷ͘ {
+    line-height: 1em;
+    vertical-align: 0.5em;
+}
+
+/*
+ *  Chrome Specific CSS 
+ */
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .search_button {
+        height: 41px;
+    } 
+}
+
+/*
+ *  Mozilla specific CSS 
+ */
+
+@-moz-document url-prefix() { 
+    
+}
+
+
+/*
+ *  Chrome specific CSS 
+ */
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+
+}
+
+/*
+ *  Mobile targeting 
+ */
+
+@media (max-width: 600px) {
+    body {
+    background-size: 100%;
+    }
+    .search_container {
+        width:100%;
+    }
+    .search_container_left {
+        width:100%;
+    }
+    #search_button {
+        width: 15%;
+        height: 45px;
+        top: 0px;
+        left: -25px;
+    }
+    .search_box {
+        width:52%;
+        background-size: 35px;
+        float: none;
+    }
+    #clear {
+        top: 5px;
+    }
+    .info {
+        width: 100%;
+        float: none;
+    }
+    .info_top {
+        width: 80%;
+        float: none;
+    }
+    .mobile_hide {
+        display: none;
+    }
+    .mobile {
+        display: original;
+    }
+    .dropdown { 
+        width: 175px;
+    }
+    .droptitle {
+        font-size: 90%;
+    }
+    .sound_button {
+        width: 10%;
+    }
+    /*
+    table { 
+        margin-left: -5px;
+        margin-right: -5px;
+        height: -moz-calc(100% + 10px);
+        height: -webkit-calc(100% + 10px);
+        height: -o-calc(100% + 10px);
+        height: calc(100% + 10px);
+    }
+    */
+}

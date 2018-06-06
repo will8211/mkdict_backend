@@ -1,0 +1,71 @@
+{% extends "master.html" %}
+{% block title %}Examples{% endblock %}
+{% block head %}
+
+<script src={{ url_for("static", filename="scripts/spin.min.js") }}></script>
+<script src={{ url_for("static", filename="scripts/results.js") }}></script>
+{% if t_dict == 'moe' %}
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/moe_style.css')}}" />
+{% endif %}
+
+
+{% endblock %}
+
+{% block body %}
+
+<h2>Taiwanese-English Dictionary</h2>
+<h4>Phrases and combinations for "{{ headword }}":</h4>
+
+<table>
+
+    <tr>
+        <th>Taiwanese</th>
+        <th>English Translation</th>
+    </tr>
+
+    {% for entry in results %}
+    {% set n           = loop.index0 %}
+    {% set id          = results[n]['Id'] %}
+    {% set tai         = results[n]["Tai"] %}
+    {% set english     = results[n]['English'] %}
+    {% set tai_numbers = results[n]["Tai_numbers"] %}
+    {% set chinese     = results[n]['Chinese'] %}
+    {% set code        = results[n]["Code"] %}
+    {% set tai_char    = results[n]['Tai_char'] %}
+
+
+    <tr>
+        <td class="taiwanese" id="{{ id }}">{{ tai | safe }}</td>
+        <td>{{ english }}</td>
+    </tr>
+
+    <tr class="hidden">
+        <td class="grey" colspan="3">
+            
+            <div class="sound_button">
+                <span class="mobile_hide audio_label"><strong>Audio: &nbsp;&nbsp;</strong></span>
+                <div id="cont_{{ n }}" class="audio_container">
+                    <img id="audio_{{ n }}" src="{{ url_for('static', filename='images/sound.svg') }}" onclick="playAudio('{{ url_for("audio", sound_file="%s.mp3" % code) }}', 'audio_{{ n }}', 'cont_{{ n }}')">
+                </div>
+            </div>
+            
+            <div class="info info_top">
+                <strong>Plaintext: </strong><span class='plain'>{{ tai_numbers }}</span><br>
+                <span class="{{ tai_char }}"><strong>Taiwanese characters: </strong><span class='plain'>{{ tai_char }}</span></span>
+            </div>
+            
+            <div class="info info_top">
+              <strong>Mandarin translation: </strong>{{ chinese | safe }}
+            </div>
+        </td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+<br>
+<span><a href="{{ referring_page }}">Back to main entry</a></span>
+<br>
+<br>
+
+{% endblock %}

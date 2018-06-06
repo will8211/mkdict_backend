@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %} - MkDict Taiwanese-English Dictionary</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    // Local jQuery if Google is offline
+    if (typeof jQuery === 'undefined') {
+        document.write(unescape('%3Cscript%20src%3D%22{{ url_for("static", filename="scripts/jquery.min.js")}}%22%3E%3C/script%3E'));
+    }
+    </script>
+    <!-- favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicons/apple-touch-icon.png')}}" />
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicons/favicon-32x32.png')}}" sizes="32x32" />
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicons/favicon-16x16.png')}}" sizes="16x16" />
+    <link rel="manifest" href="{{ url_for('static', filename='favicons/manifest.json')}}" />
+    <link rel="mask-icon" href="{{ url_for('static', filename='favicons/safari-pinned-tab.svg')}}" color="#5bbad5" />
+    <meta name="theme-color" content="#ffffff">
+    <!-- end favicons-->
+{% block head %}{% endblock %}
+</head>
+<body>
+
+{% macro select(x, default=False) -%}
+    {%- if x == roman %}selected
+    {%- elif x == q_type %}selected
+    {%- elif x == t_dict %}checked
+    {%- elif default == True %}checked{% endif %}
+{%- endmacro %}
+
+{% block body %}
+
+{% block search %}
+
+<form action="{{ url_for('results') }}">
+    <span>
+        <input type="text" class="search_box" id="query" name="query" value="{{ query }}" placeholder="Search..."><!--
+        --><a href="search/clear" id="clear"></a>
+        <input id="search_button" type="submit" value="Go">
+        <input type="hidden" name="page" value=1>
+    </span>
+    <br><span class="mobile"><br></span>
+    <span>
+        <div class="droptitle">Search by:</div>
+        <select name="q_type" class="dropdown">
+            <option value="en" {{ select('en') }}>English</option>
+            <option value="tw" {{ select('tw') }}>Taiwanese</option>
+            <option value="ma" {{ select('ma') }}>Mandarin characters</option>
+        </select>  
+    </span>
+    <br><br>
+    <span>
+        <div class="droptitle">Romanization<span class="mobile_hide"> system</span>:</div>
+        <select id="roman" name="roman" class="dropdown">
+            <option value="p" {{ select('p') }}>Pe̍h-ōe-jī (POJ)</option>
+            <option value="t" {{ select('t') }}>Tâi-lô (TRS)</option>
+            <option value="d" {{ select('d') }}>Daī-ghî tōng-iōng (DT)</option>
+        </select>  
+    </span>
+    <br><br>
+    <span>
+        <input type="radio" name="t_dict" value="mk" {{ select('mk', True)}} onclick="switchDict('mk', 'radio')">
+        <span id="mk">Maryknoll Dictionary</span>
+        &nbsp;&nbsp;
+        <span class="mobile"><br></span>
+        <input type="radio" name="t_dict" value="moe" {{ select('moe')}} onclick="switchDict('moe', 'radio')">
+        <span id="moe">MOE Dictionary</span>
+    </span>
+</form>
+
+<script>
+// Clear searchbox
+$("#clear").click(function(evt){
+    evt.preventDefault();
+    $("#query").val("").focus();
+});
+$("#search_button").click(function(evt){
+    if ($("#query").val() === "") {
+        evt.preventDefault();
+    }
+});
+</script>
+
+{% endblock %}
+{% endblock %}
+
+</body>
+</html>
+

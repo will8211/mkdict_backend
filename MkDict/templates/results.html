@@ -1,0 +1,105 @@
+{% extends "master.html" %}
+{% block title %}Results{% endblock %}
+
+
+{% block head %}
+
+<script src={{ url_for("static", filename="scripts/spin.min.js") }}></script>
+<script src={{ url_for("static", filename="scripts/results.js") }}></script>
+{% if t_dict == 'moe' %}
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/moe_style.css')}}" />
+{% endif %}
+
+{% endblock %}
+
+{% block body %}
+
+<h2 id="result_title">Taiwanese-English Dictionary</h2>
+
+<div class="search_container_left">
+    {% block search %}{{ super() }}{% endblock %}
+</div>
+
+<br>Results for "{{ query }}":<br><br>
+
+   <div id="tab_left"></div><!--
+--><div id="maryknoll_tab" onclick="switchDict('mk')">&nbsp;MARYKNOLL&nbsp;<span class="mobile_hide">DICTIONARY&nbsp;</span></div><!--
+--><div id="overlap_left"></div><!--
+--><div id="overlap_right"></div><!--
+--><div id="moe_tab" onclick="switchDict('moe')">&nbsp;MOE&nbsp;<span class="mobile_hide">DICTIONARY&nbsp;</span></div><!--
+--><div id="tab_right"></div>
+
+<table>
+
+  <tr>
+    <th>Taiwanese</th>
+    <th>English Translation</th>
+    <th></th>
+  </tr>
+  
+  {% set refer_link = "..%s?roman=%s%%26query=%s%%26page=%s%%26q_type=%s%%26t_dict=%s" % (request.path, roman, query, page, q_type, t_dict) %}
+  {% for entry in results %}
+  {% set n           = loop.index0 %}
+  {% set id          = results[n]['Id'] %}
+  {% set english     = results[n]['English'] %}
+  {% set poj         = results[n]['POJ'] %}
+  {% set poj_numbers = results[n]['POJ_numbers'] %}
+  {% set trs         = results[n]['TRS'] %}
+  {% set trs_numbers = results[n]['TRS_numbers'] %}
+  {% set dt          = results[n]['DT'] %}
+  {% set dt_numbers  = results[n]['DT_numbers'] %}
+  {% set chinese     = results[n]['Chinese'] %}
+  {% set code        = results[n]['Code'] %}
+  {% set examples    = results[n]['Examples'] %}
+  {% set tai_char    = results[n]['Tai_char'] %}
+  
+  <tr class="hideshow" id="_{{ n }}">
+    <td class="taiwanese" id="{{ id }}"><span class="tai_word"><span class="POJ">{{ poj }}</span><span class="TRS">{{ trs }}</span><span class="DT">{{ dt }}</span></span></td>
+    <td class="english">{{ results[n]['English'] }}</td>
+    <td><img class="moreless" id="moreless_{{ n }}" src="{{ url_for('static', filename='images/more.svg')}}"/></td>
+  </tr>
+
+    <tr class="hidden" id="slave_{{ n }}">
+        <td class="grey" colspan="3">
+        
+            <div class="sound_button">
+                <span class="mobile_hide audio_label"><strong>Audio: &nbsp;&nbsp;</strong></span>
+                <div id="cont_{{ n }}" class="audio_container">
+                    <img id="audio_{{ n }}" src="{{ url_for('static', filename='images/sound.svg') }}" onclick="playAudio('{{ url_for("audio", sound_file="%s.mp3" % code) }}', 'audio_{{ n }}', 'cont_{{ n }}')">
+                </div>
+            </div>
+        
+            <div class="info info_top">
+                <strong>Plaintext: </strong><span class='plain'><span class="POJ">{{ poj_numbers }}</span><span class="TRS">{{ trs_numbers }}</span><span class="DT">{{ dt_numbers }}</span></span><br>
+                <span class="{{ tai_char }}"><strong>Taiwanese characters: </strong><span class='plain'>{{ tai_char }}</span></span>
+            </div>
+        
+            <div class="info info_top">
+              <strong>Mandarin translation: </strong>{{ chinese | safe }}
+            </div>
+        
+        {% if examples != [] %}
+        <div class="info">
+          <strong>Phrases and combinations: </strong><br>
+            {% for entry in examples %}
+            {% set link_start = "%s?roman=%s&head_id=%d&t_dict=%s&headword=%s&referring_page=%s" % (url_for('examples'), roman, id, t_dict, english, refer_link) %}
+            {% set m = loop.index0 %}
+            <a href="{{link_start }}%23{{ id }}#{{ examples[m]['Id'] }}">
+                <strong><span class="POJ">{{ examples[m]['POJ'] }}</span><span class="TRS">{{ examples[m]['TRS'] }}</span><span class="DT">{{ examples[m]['DT'] }}</span></strong></a>&nbsp;
+            {{ examples[m]['English'] | safe }}<br>
+            {% endfor %}
+           <br>
+        </div>
+        {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+
+</table>
+<br>
+<span>{{ links | safe }}</span>
+<br><br>
+<a href="{{ url_for('search') }}">Back to main page</a>
+<br>
+
+{% endblock %}
